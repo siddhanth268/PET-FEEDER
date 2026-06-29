@@ -1,0 +1,24 @@
+#include <Servo.h>
+Servo door;
+int irpin=8;
+
+void setup(){
+  pinMode(irpin,INPUT);
+  Serial.begin(9600);
+  door.attach(9);
+  door.write(0);
+}
+void loop(){
+  int irreading;
+  irreading=digitalRead(irpin);
+  if(irreading == 0){
+    door.write(90);
+    delay(10);
+    door.write(0);
+  }
+  else{
+    door.write(0);
+    delay(100);
+  }
+  Serial.println(irreading);
+}
